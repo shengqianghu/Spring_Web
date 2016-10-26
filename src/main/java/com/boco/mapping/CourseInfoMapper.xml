@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boco.dao.CourseInfoMapper">
+  <resultMap id="BaseResultMap" type="com.boco.model.CourseInfo">
+    <result column="C_ID" jdbcType="DECIMAL" property="cId" />
+    <result column="CNAME" jdbcType="VARCHAR" property="cname" />
+  </resultMap>
+  <insert id="insert" parameterType="com.boco.model.CourseInfo">
+    insert into COURSE_INFO (C_ID, CNAME)
+    values (#{cId,jdbcType=DECIMAL}, #{cname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.boco.model.CourseInfo">
+    insert into COURSE_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cId != null">
+        C_ID,
+      </if>
+      <if test="cname != null">
+        CNAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cId != null">
+        #{cId,jdbcType=DECIMAL},
+      </if>
+      <if test="cname != null">
+        #{cname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+</mapper>

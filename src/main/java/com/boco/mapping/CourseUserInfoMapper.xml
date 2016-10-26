@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boco.dao.CourseUserInfoMapper">
+  <resultMap id="BaseResultMap" type="com.boco.model.CourseUserInfo">
+    <result column="ID" jdbcType="DECIMAL" property="id" />
+    <result column="U_ID" jdbcType="DECIMAL" property="uId" />
+    <result column="C_ID" jdbcType="DECIMAL" property="cId" />
+  </resultMap>
+  <insert id="insert" parameterType="com.boco.model.CourseUserInfo">
+    insert into USER_COURSE (ID, U_ID, C_ID)
+    values (#{id,jdbcType=DECIMAL}, #{uId,jdbcType=DECIMAL}, #{cId,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.boco.model.CourseUserInfo">
+    insert into USER_COURSE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="uId != null">
+        U_ID,
+      </if>
+      <if test="cId != null">
+        C_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="uId != null">
+        #{uId,jdbcType=DECIMAL},
+      </if>
+      <if test="cId != null">
+        #{cId,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+
+</mapper>
